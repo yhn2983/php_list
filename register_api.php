@@ -7,23 +7,27 @@ $output = [
   "code" => 0, #追蹤程式執行的編號
 ];
 
-if (empty($_POST["email"]) or empty($_POST["password"])) { echo "not form Empty"
+if (empty($_POST["email"]) or empty($_POST["password"])) {
+  echo "not form Empty";
 } else {
   $email = trim($_POST["email"]);
-  $password = password_hash(trim($_POST["password"]));
+  $password = password_hash(trim($_POST["password"]), PASSWORD_DEFAULT);
   $sql = "INSERT INTO `members` ( `name`,`email`, `nickname`, `password`) VALUES (?,?,?,?)";
   $stmt = $pdo->prepare($sql);
 
-  try{$stmt->execute([
-    $_POST["name"],
-    $email,
-    $_POST["nickname"],
-    $password
-  ]);
-  $output['success'] = boolval($stmt->rowCount());
-}catch(PDOException $e){       $output['error'] = $e->getMessage(); // 捕获 SQL 错误并显示
-  }}
-  
+  try {
+    $stmt->execute([
+      $_POST["name"],
+      $email,
+      $_POST["nickname"],
+      $password
+    ]);
+    $output['success'] = boolval($stmt->rowCount());
+  } catch (PDOException $e) {
+    $output['error'] = $e->getMessage(); // 捕获 SQL 错误并显示
+  }
+}
+
 
 
 

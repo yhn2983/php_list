@@ -96,7 +96,7 @@ const sendData = (e) => {
   if (isPass == true) {
     const fd = new FormData(document.f1); //沒有外觀的表單物件
 
-    fetch(`register_api.php`, {
+    fetch("register_api.php", {
       method: "POST",
       body: fd,
     }).then(r => r.json()).then(result => {
@@ -115,6 +115,9 @@ const sendData = (e) => {
       //   document.querySelector("#failureInfo").innerHTML = result.error;
       //   failureModal.show();
       //}
+    }).catch(error => {
+      console.error("Fetch error:", error);
+      alert("请求失败，请稍后重试");
     })
   }
 }
