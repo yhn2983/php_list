@@ -10,6 +10,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php include __DIR__ . "/parts/header.php" ?>
 <?php include __DIR__ . "/parts/navbar.php" ?>
+<h2><?= $title ?></h2>
 <div class="contain">
   <div class="row">
     <div class="col-3">
@@ -32,18 +33,18 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
           <?php foreach ($rows as $r): ?>
-          <tr>
+            <tr>
 
-            <td><?= $r["id"] ?></td>
-            <td><?= $r["name"] ?></td>
-            <td><?= $r["email"] ?></td>
-            <td><?= $r["nickname"] ?></td>
-            <td><?= $r["password"] ?></td>
+              <td><?= $r["id"] ?></td>
+              <td><?= $r["name"] ?></td>
+              <td><?= $r["email"] ?></td>
+              <td><?= $r["nickname"] ?></td>
+              <td><?= $r["password"] ?></td>
 
 
-            <td><a href="member_edit.php?sid=<?= $r["id"] ?>"><i class="bi bi-pencil-square"></i></a></td>
-            <td><a href="javascript: deleteIt(<?= $r["id"] ?>)"><i class="bi bi-x-square"></i></a></td>
-          </tr>
+              <td><a href="member_edit.php?sid=<?= $r["id"] ?>"><i class="bi bi-pencil-square"></i></a></td>
+              <td><a href="javascript: deleteIt(<?= $r["id"] ?>)"><i class="bi bi-x-square"></i></a></td>
+            </tr>
           <?php endforeach ?>
         </tbody>
       </table>
@@ -52,11 +53,11 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 <?php include __DIR__ . "/parts/script.php" ?>
 <script>
-function deleteIt(sid) {
-  if (confirm(`是否要刪除第${sid}筆訂單`)) {
-    location.href = `member_del.php?sid=${sid}`;
+  function deleteIt(sid) {
+    if (confirm(`是否要刪除第${sid}筆訂單`)) {
+      location.href = `member_del.php?sid=${sid}`;
+    }
   }
-}
 </script>
 
 <?php include __DIR__ . "/parts/footer.php" ?>

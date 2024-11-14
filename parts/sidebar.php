@@ -1,45 +1,45 @@
 <style>
-.side-bar {
-  width: 310px;
-  background-color: lightgrey;
-}
+  .side-bar {
+    width: 310px;
+    background-color: lightgrey;
+  }
 
-.logo {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
+  .logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
 
-.li-hover :hover {
-  background-color: darkblue;
-  color: white;
-  border-radius: 20px;
-}
+  .li-hover :hover {
+    background-color: darkblue;
+    color: white;
+    border-radius: 20px;
+  }
 
-.member-btn:hover,
-.order-btn:hover,
-.prod-btn:hover,
-.cate-btn:hover,
-.cou-btn:hover,
-.eval-btn:hover {
-  color: darkblue;
-}
+  .member-btn:hover,
+  .order-btn:hover,
+  .prod-btn:hover,
+  .cate-btn:hover,
+  .cou-btn:hover,
+  .eval-btn:hover {
+    color: darkblue;
+  }
 
 
-.sub-li,
-.span-font {
-  font-family: 'Caveat', cursive;
-  font-size: large;
-}
+  .sub-li,
+  .span-font {
+    font-family: 'Caveat', cursive;
+    font-size: large;
+  }
 
-.sub-li:hover {
-  background-color: lightblue;
-  border-radius: 20px;
-}
+  .sub-li:hover {
+    background-color: lightblue;
+    border-radius: 20px;
+  }
 
-h4 {
-  font-family: 'Caveat', cursive;
-}
+  h4 {
+    font-family: 'Caveat', cursive;
+  }
 </style>
 
 
@@ -65,7 +65,7 @@ h4 {
     </li>
     <hr>
     <li class="mb-1 d-flex justify-content-center">
-      <a href="20.index_product.php">
+      <a href="product.php">
         <button class="prod-btn btn btn-toggle rounded collapsed" data-bs-toggle="collapse"
           data-bs-target="#Product-collapse" aria-expanded="false" type="button">
           <div class="title d-flex">
@@ -77,26 +77,17 @@ h4 {
     </li>
     <hr>
 
-
-    <li class="mb-1 d-flex flex-column">
-      <button class="order-btn btn btn-toggle rounded collapsed" data-bs-toggle="collapse"
-        data-bs-target="#Order-collapse" aria-expanded="false" type="button">
-        <div class="title d-flex align-items-center justify-content-center">
-          <h5><i class="fa-solid fa-clipboard me-1"></i></h5>
-          <h4>Order management</h4>
-          <i class="fa-solid fa-angle-down ms-2"></i>
-        </div>
-      </button>
-      <div class="collapse mt-2 mx-auto" id="Order-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li class="mb-2 sub-li"><a href="40.index_order-normal.php" class=" text-decoration-none rounded ">Normal
-              orders</a></li>
-          <li class="mb-2 sub-li"><a href="40.index_order-barter.php" class=" text-decoration-none rounded ">Barter
-              orders</a></li>
-          <li class="sub-li"><a href="40.index_order-bargain.php" class="text-decoration-none rounded ">Bargain
-              orders</a></li>
-        </ul>
-      </div>
+    <li class="mb-1 d-flex justify-content-center">
+      <a href="list.php">
+        <button class="order-btn btn btn-toggle rounded collapsed" data-bs-toggle="collapse"
+          data-bs-target="#Order-collapse" aria-expanded="false" type="button">
+          <div class="title d-flex align-items-center justify-content-center">
+            <h5><i class="fa-solid fa-clipboard me-1"></i></h5>
+            <h4>Order management</h4>
+            <i class="fa-solid fa-angle-down ms-2"></i>
+          </div>
+        </button>
+      </a>
     </li>
     <hr>
 
