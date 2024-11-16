@@ -1,45 +1,45 @@
 <style>
-  .side-bar {
-    width: 310px;
-    background-color: lightgrey;
-  }
+.side-bar {
+  width: 310px;
+  background-color: lightgrey;
+}
 
-  .logo {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
+.logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
 
-  .li-hover :hover {
-    background-color: darkblue;
-    color: white;
-    border-radius: 20px;
-  }
+.li-hover :hover {
+  background-color: darkblue;
+  color: white;
+  border-radius: 20px;
+}
 
-  .member-btn:hover,
-  .order-btn:hover,
-  .prod-btn:hover,
-  .cate-btn:hover,
-  .cou-btn:hover,
-  .eval-btn:hover {
-    color: darkblue;
-  }
+.member-btn:hover,
+.order-btn:hover,
+.prod-btn:hover,
+.cate-btn:hover,
+.cou-btn:hover,
+.eval-btn:hover {
+  color: darkblue;
+}
 
 
-  .sub-li,
-  .span-font {
-    font-family: 'Caveat', cursive;
-    font-size: large;
-  }
+.sub-li,
+.span-font {
+  font-family: 'Caveat', cursive;
+  font-size: large;
+}
 
-  .sub-li:hover {
-    background-color: lightblue;
-    border-radius: 20px;
-  }
+.sub-li:hover {
+  background-color: lightblue;
+  border-radius: 20px;
+}
 
-  h4 {
-    font-family: 'Caveat', cursive;
-  }
+h4 {
+  font-family: 'Caveat', cursive;
+}
 </style>
 
 
@@ -93,24 +93,16 @@
 
 
     <li class="mb-1 d-flex flex-column">
-      <button class="eval-btn btn btn-toggle rounded collapsed" data-bs-toggle="collapse"
-        data-bs-target="#Evaluation-collapse" aria-expanded="false" type="button">
-        <div class="title d-flex align-items-center justify-content-center">
-          <h5><i class="fa-regular fa-star-half-stroke me-1"></i></h5>
-          <h4>Evaluation management</h4>
-          <i class="fa-solid fa-angle-down ms-2"></i>
-        </div>
-      </button>
-      <div class="collapse mt-2 mx-auto" id="Evaluation-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li class="mb-2 sub-li"><a href="60.index_evaluation-normal.php"
-              class="text-decoration-none rounded sub-li ">Form normal orders</a></li>
-          <li class="mb-2 sub-li"><a href="60.index_evaluation-barter.php"
-              class="text-decoration-none rounded sub-li">From barter orders</a></li>
-          <li class=" sub-li"><a href="60.index_evaluation-bargain.php"
-              class=" text-decoration-none rounded sub-li">From bargain orders</a></li>
-        </ul>
-      </div>
+      <a href="eval_list.php">
+        <button class="eval-btn btn btn-toggle rounded collapsed" data-bs-toggle="collapse"
+          data-bs-target="#Evaluation-collapse" aria-expanded="false" type="button">
+          <div class="title d-flex align-items-center justify-content-center">
+            <h5><i class="fa-regular fa-star-half-stroke me-1"></i></h5>
+            <h4>Evaluation management</h4>
+            <i class="fa-solid fa-angle-down ms-2"></i>
+          </div>
+        </button>
+      </a>
     </li>
   </ul>
 </div>

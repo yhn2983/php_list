@@ -34,7 +34,11 @@ if (!isset($pageName)) {
           </li>
 
           <li class="nav-item">
+            <?php if ($pageName == "product" || $pageName == "product_add"): ?>
+            <a class="nav-link <?= $pageName == 'product_add' ? 'active' : '' ?>" href="product_add.php">新增</a>
+            <?php else: ?>
             <a class="nav-link <?= $pageName == 'add' ? 'active' : '' ?>" href="add.php">新增</a>
+            <?php endif ?>
           </li>
 
           <li class="nav-item">
