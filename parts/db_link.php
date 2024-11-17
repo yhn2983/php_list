@@ -1,8 +1,8 @@
 <?php
 $db_host = "localhost";
 $db_user = "root";
-$db_pass = "E124801602";
-$db_name = "fake_data_base";
+$db_pass = "password";
+$db_name = "data_base_name";
 
 $dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8mb4";
 
