@@ -24,6 +24,7 @@ if (isset($_POST["submit"])) {
         $_POST['descr'],
 
       ]);
+      header("Location: product.php");
     }
   } else {
     echo "upload file false";
