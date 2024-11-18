@@ -6,4 +6,5 @@
   二、CRUD功能   
   
   三、登入登出  
-    
+
+      ![image](loginout.gif)
