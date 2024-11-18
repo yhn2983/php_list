@@ -15,11 +15,11 @@
    
   二、CRUD功能   
   1.新增  
- ![image](https://github.com/yhn2983/php_list/blob/main/create.gif)
-  2.刪除  
-  ![image](https://github.com/yhn2983/php_list/blob/main/delete.gif)
-  3.編輯  
-   ![image](https://github.com/yhn2983/php_list/blob/main/edit.gif)
+ ![image](https://github.com/yhn2983/php_list/blob/main/create.gif)  
+  2.刪除    
+  ![image](https://github.com/yhn2983/php_list/blob/main/delete.gif)  
+  3.編輯   
+   ![image](https://github.com/yhn2983/php_list/blob/main/edit.gif)  
   
   三、登入登出  
 
