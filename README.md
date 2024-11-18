@@ -3,8 +3,19 @@
 
   一、 基本列表呈現  
 
-  ![image](https://github.com/yhn2983/php_list/blob/main/%E7%99%BB%E5%85%A5%E5%89%8D%E5%88%97%E8%A1%A8.png) ![image](https://github.com/yhn2983/php_list/blob/main/%E7%99%BB%E5%85%A5%E5%BE%8C%E5%88%97%E8%A1%A8.png)
+  ![image](https://github.com/yhn2983/php_list/blob/main/%E7%99%BB%E5%85%A5%E5%89%8D%E5%88%97%E8%A1%A8.png)   
+  
+  ![image](https://github.com/yhn2983/php_list/blob/main/%E7%99%BB%E5%85%A5%E5%BE%8C%E5%88%97%E8%A1%A8.png)
+   ![image](https://github.com/yhn2983/php_list/blob/main/search.gif)  
+      ![image](https://github.com/yhn2983/php_list/blob/main/page.gif)
+   
   二、CRUD功能   
+  1.新增  
+ ![image](https://github.com/yhn2983/php_list/blob/main/create.gif)
+  2.刪除  
+  ![image](https://github.com/yhn2983/php_list/blob/main/delete.gif)
+  3.編輯  
+   ![image](https://github.com/yhn2983/php_list/blob/main/edit.gif)
   
   三、登入登出  
 
