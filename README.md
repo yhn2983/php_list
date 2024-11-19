@@ -1,7 +1,7 @@
 ### 資策會前端工程師就業養成班期中作業  
 ## PHP製作網站後台  
 
-  #一、 基本列表呈現    
+# 一、 基本列表呈現    
     -從資料表中選擇所有欄位。$SQL=SELECT * FROM table;  
     -透過query() 直接執行 SQL，用fetchAll()從 PDOStatement 對象中提取所有查詢結果。$rows = $pdo->query($sql)->fetchAll();  
    
