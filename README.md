@@ -6,9 +6,15 @@
     -透過query() 直接執行 SQL，用fetchAll()從 PDOStatement 對象中提取所有查詢結果。$rows = $pdo->query($sql)->fetchAll();  
    
 1. 未登入列表畫面  
+
+   --若無登入，則導入未登入的頁面，透過isset($_SESSION())判斷有無登入  
+   
   ![image](https://github.com/yhn2983/php_list/blob/main/%E7%99%BB%E5%85%A5%E5%89%8D%E5%88%97%E8%A1%A8.png)
    
  2.登入後列表畫面    
+
+  ----若有登入，則導入登入後的頁面，透過isset($_SESSION())判斷有無登入    
+    
   ![image](https://github.com/yhn2983/php_list/blob/main/%E7%99%BB%E5%85%A5%E5%BE%8C%E5%88%97%E8%A1%A8.png)  
   3.搜尋列表與排序功能  
    ![image](https://github.com/yhn2983/php_list/blob/main/search.gif)    
