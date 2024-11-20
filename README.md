@@ -22,15 +22,22 @@
   --透過條件判斷式來判斷以何種SQL語法讀取並排序資料庫資料  
   
   --處理搜尋功能，先透過isset($_GET["keyword"]) && $_GET["keyword"] != ""： 確保關鍵字參數存在且非空，避免處理無效查詢。  
-  $keyword = "%" . $_GET["keyword"] . "%";用以模糊查詢。    
-  在SQL語句中對多個欄位進行比對，並以?作佔位。  
-  $stmt = $pdo->prepare($sql);以prepare() 防止 SQL 注入。  
-  $stmt->bindValue(1, $keyword, PDO::PARAM_STR);用bindValue() 用來將值與 SQL 中的佔位符關聯，並指定類型為 PDO::PARAM_STR。  
-  用execute() 方法執行準備好的 SQL。  
-  最後透過$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);取得結果。  
+    $keyword = "%" . $_GET["keyword"] . "%";用以模糊查詢。    
+    在SQL語句中對多個欄位進行比對，並以?作佔位。  
+    $stmt = $pdo->prepare($sql);以prepare() 防止 SQL 注入。  
+    $stmt->bindValue(1, $keyword, PDO::PARAM_STR);用bindValue() 用來將值與 SQL 中的佔位符關聯，並指定類型為 PDO::PARAM_STR。  
+    用execute() 方法執行準備好的 SQL。  
+    最後透過$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);取得結果。  
         
    ![image](https://github.com/yhn2983/php_list/blob/main/search.gif)     
-   4.頁碼功能  
+   4.頁碼功能    
+
+  --定義每頁筆數：設定每頁顯示的記錄數（如 10 筆）。$perPage = 10;
+  --計算總記錄數：從資料庫查詢 order_fake 表的總筆數。$total_sql = "SELECT COUNT(1) FROM order_fake ";/$total_rows = $pdo->query($total_sql)->fetch(PDO::FETCH_NUM)[0]; 
+  --計算總頁數：依據總記錄數和每頁筆數，計算分頁所需的總頁數。$total_pages = ceil($total_rows / $perPage);
+
+  --根據選擇的頁數來決定SQL語句要取得並呈現的資料筆數。"SELECT * FROM order_fake order by id desc LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
+         
       ![image](https://github.com/yhn2983/php_list/blob/main/page.gif)  
    
   二、CRUD功能   
