@@ -38,7 +38,7 @@
 
   --根據選擇的頁數來決定SQL語句要取得並呈現的資料筆數。"SELECT * FROM order_fake order by id desc LIMIT %s, %s", ($page - 1) * $perPage, $perPage);  
          
-      ![image](https://github.com/yhn2983/php_list/blob/main/page.gif)  
+  ![image](https://github.com/yhn2983/php_list/blob/main/page.gif)  
    
   二、CRUD功能   
   1.新增  
