@@ -53,8 +53,15 @@
 
 --當點擊刪除鈕後，會連結到"del.php?sid=${sid}"，透過 SQL 語句"DELETE  FROM `table` WHERE id=$sid"，用於從資料表中刪除一條資料。使用 PDO 的 query() 方法執行上述 SQL 語句。
         
-  ![image](https://github.com/yhn2983/php_list/blob/main/delete.gif)  
+  ![image](https://github.com/yhn2983/php_list/blob/main/delete.gif)    
+    
   3.編輯   
+
+--$sql="UPDATE `table` SET `th_name`=?"; 定義一條SQL UPDATE語句，用於更新資料表中的記錄。     
+  
+--使用 PDO 的 prepare() 方法準備執行 SQL 語句，並使用 execute() 方法執行準備好的 SQL 語句。  
+  
+        
    ![image](https://github.com/yhn2983/php_list/blob/main/edit.gif)  
   
   三、登入登出  
