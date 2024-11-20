@@ -45,9 +45,14 @@
 
   --定義一條 SQL 語句，用於向 product 資料表插入一條新的記錄，用"?"作為佔位符，用於防止 SQL 注入。$sql = "INSERT INTO `table`(`th1`, `th2`, `th3`, `th4` ) VALUES (?,?,?,?)";    
   --使用 PDO 的 prepare() 方法準備執行 SQL 語句。$stmt = $pdo->prepare($sql);  
-  --使用 execute() 方法執行準備好的 SQL 語句，並傳入對應的值，傳入的數據將依次替換語句中的"?"。$stmt->execute([ $_POST['name1'], $_POST['name2'], $_POST['name3'],$_POST['name4'],]);  
- ![image](https://github.com/yhn2983/php_list/blob/main/create.gif)  
-  2.刪除    
+  --使用 execute() 方法執行準備好的 SQL 語句，並傳入對應的值，傳入的數據將依次替換語句中的"?"。$stmt->execute([ $_POST['name1'], $_POST['name2'], $_POST['name3'],$_POST['name4'],]);   
+    
+ ![image](https://github.com/yhn2983/php_list/blob/main/create.gif)    
+   
+  2.刪除      
+
+--當點擊刪除鈕後，會連結到"del.php?sid=${sid}"，透過 SQL 語句"DELETE  FROM `table` WHERE id=$sid"，用於從資料表中刪除一條資料。使用 PDO 的 query() 方法執行上述 SQL 語句。
+        
   ![image](https://github.com/yhn2983/php_list/blob/main/delete.gif)  
   3.編輯   
    ![image](https://github.com/yhn2983/php_list/blob/main/edit.gif)  
