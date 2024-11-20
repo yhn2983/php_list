@@ -32,11 +32,11 @@
    ![image](https://github.com/yhn2983/php_list/blob/main/search.gif)     
    4.頁碼功能    
 
-  --定義每頁筆數：設定每頁顯示的記錄數（如 10 筆）。$perPage = 10;
-  --計算總記錄數：從資料庫查詢 order_fake 表的總筆數。$total_sql = "SELECT COUNT(1) FROM order_fake ";/$total_rows = $pdo->query($total_sql)->fetch(PDO::FETCH_NUM)[0]; 
-  --計算總頁數：依據總記錄數和每頁筆數，計算分頁所需的總頁數。$total_pages = ceil($total_rows / $perPage);
+  --定義每頁筆數：設定每頁顯示的記錄數（如 10 筆）。$perPage = 10;  
+  --計算總記錄數：從資料庫查詢 order_fake 表的總筆數。$total_sql = "SELECT COUNT(1) FROM order_fake ";/$total_rows = $pdo->query($total_sql)->fetch(PDO::FETCH_NUM)[0];   
+  --計算總頁數：依據總記錄數和每頁筆數，計算分頁所需的總頁數。$total_pages = ceil($total_rows / $perPage);  
 
-  --根據選擇的頁數來決定SQL語句要取得並呈現的資料筆數。"SELECT * FROM order_fake order by id desc LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
+  --根據選擇的頁數來決定SQL語句要取得並呈現的資料筆數。"SELECT * FROM order_fake order by id desc LIMIT %s, %s", ($page - 1) * $perPage, $perPage);  
          
       ![image](https://github.com/yhn2983/php_list/blob/main/page.gif)  
    
