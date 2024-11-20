@@ -64,6 +64,10 @@
         
    ![image](https://github.com/yhn2983/php_list/blob/main/edit.gif)  
   
-  三、登入登出  
+  三、登入登出    
+
+--從使用者提交的表單中獲取 email 和 password 的值。使用 SQL 語句，用於從資料表中查詢與指定 email 相匹配的資料。取得資料後，使用 password_verify() 比對使用者提交的密碼和資料庫中儲存的加密密碼是否一致。若密碼一致，則將用戶的登入資訊存入 PHP 的 Session 中，供後續頁面驗證使用者身份或存取相關資料，到此完成登入功能。  
+  
+--若點擊登出按鈕，則刪除 PHP 的 Session 中的用戶登入資訊，以完成登出功能。  
 
   ![image](https://github.com/yhn2983/php_list/blob/main/loginout.gif)
