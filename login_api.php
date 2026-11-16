@@ -2,8 +2,8 @@
 require __DIR__ . '/parts/db_link.php';
 header("Content-Type: application/json");
 $output=[
-	"success"=>false, #有沒有新增成功
-	"postData"=>$_POST,
+	"success"=>false, #有沒有登入成功
+	"error"=>"帳號或密碼錯誤",
 	"code"=>0, #追蹤程式執行的編號
 ];
 
@@ -24,6 +24,8 @@ if(empty($_POST["email"])or empty($_POST["password"])){
 	$output['code']=$output['success']?200:420;
 
 	if($output['success']){
+		$output['error']="";
+		session_regenerate_id(true); #登入成功換一個新的 session id
 		$_SESSION['admin']=[
 			'id'=>$row['id'],
 			'email'=>$email,
