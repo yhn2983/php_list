@@ -4,19 +4,39 @@ $title = '訂單列表';
 $pageName = 'list';
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1; #用戶選擇進去第幾頁
+
+// 搜尋關鍵字：有搜尋時，總筆數、分頁連結都要跟著關鍵字走
+$keyword = isset($_GET["keyword"]) ? trim($_GET["keyword"]) : "";
+$qs = $keyword !== "" ? "&keyword=" . urlencode($keyword) : ""; #接在分頁連結後面的參數
+$where = "";
+$params = [];
+if ($keyword !== "") {
+	$where = " WHERE
+			sellername LIKE ? OR
+			buyername LIKE ? OR
+			total_price LIKE ? OR
+			total_amount LIKE ? OR
+			shipment_status LIKE ? OR
+			shipment_fee LIKE ? OR
+			status LIKE ? ";
+	$params = array_fill(0, 7, "%" . $keyword . "%");
+}
+
 if ($page < 1) {
-	header("Location: ?page=1");
+	header("Location: ?page=1" . $qs);
 	exit();
 }
 
 $perPage = 10; #每一頁筆數
-$total_sql = "SELECT COUNT(1) FROM order_fake ";
-$total_rows = $pdo->query($total_sql)->fetch(PDO::FETCH_NUM)[0]; #總筆數
+$total_sql = "SELECT COUNT(1) FROM order_fake " . $where;
+$stmt = $pdo->prepare($total_sql);
+$stmt->execute($params);
+$total_rows = $stmt->fetch(PDO::FETCH_NUM)[0]; #總筆數（有搜尋時為符合條件的筆數）
 $total_pages = max(1, ceil($total_rows / $perPage)); #總頁數
 # echo json_encode([$total_rows,$total_pages]);
 
 if ($page > $total_pages) {
-	header("Location: ?page=" . $total_pages);
+	header("Location: ?page=" . $total_pages . $qs);
 	exit();
 }
 
@@ -50,31 +70,14 @@ if ($sortType == "priceSmall") {
 
 
 // 搜尋欄位	
-if (isset($_GET["keyword"]) && $_GET["keyword"] != "") {
-	$keyword = "%" . $_GET["keyword"] . "%";
-	$sql = "SELECT * FROM order_fake WHERE  
-			sellername LIKE ? OR
-			buyername LIKE ? OR
-			total_price LIKE ? OR
-			total_amount LIKE ? OR
-			shipment_status LIKE ? OR
-			shipment_fee LIKE ? OR
-			status LIKE ? 
-			ORDER BY id DESC";
+if ($keyword !== "") {
+	// 搜尋結果一樣用 LIMIT 分頁
+	$sql = sprintf("SELECT * FROM order_fake " . $where . " ORDER BY id DESC LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
 
 	$stmt = $pdo->prepare($sql);
 
-	// Bind parameters with data type separately
-	$stmt->bindValue(1, $keyword, PDO::PARAM_STR);
-	$stmt->bindValue(2, $keyword, PDO::PARAM_STR);
-	$stmt->bindValue(3, $keyword, PDO::PARAM_STR);
-	$stmt->bindValue(4, $keyword, PDO::PARAM_STR);
-	$stmt->bindValue(5, $keyword, PDO::PARAM_STR);
-	$stmt->bindValue(6, $keyword, PDO::PARAM_STR);
-	$stmt->bindValue(7, $keyword, PDO::PARAM_STR);
-
-	// Execute the statement
-	$stmt->execute();
+	// Execute the statement（7 個欄位都綁定同一個關鍵字）
+	$stmt->execute($params);
 
 	// Fetch the result or perform other operations
 	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -105,14 +108,14 @@ else {
 								<ul class="pagination">
 									<!-- 跳到第一頁 -->
 									<li>
-										<a class="page-link" href="?page=<?= 1 ?>" aria-label="Next">
+										<a class="page-link" href="?page=<?= 1 ?><?= htmlspecialchars($qs) ?>" aria-label="Next">
 											<i class="bi bi-chevron-double-left"></i>
 										</a>
 									</li>
 									<!-- 跳到前一頁 -->
 									<li class="page-item">
 										<?php if ($page > 1): ?>
-											<a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous">
+											<a class="page-link" href="?page=<?= $page - 1 ?><?= htmlspecialchars($qs) ?>" aria-label="Previous">
 												<i class="bi bi-chevron-left"></i>
 											</a>
 										<?php endif ?>
@@ -120,17 +123,17 @@ else {
 									</li>
 									<?php if ($page - 2 < 1): ?>
 										<?php for ($i = 1; $i <= min(5, $total_pages); $i++): ?>
-											<li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
+											<li class="page-item"><a class="page-link" href="?page=<?= $i ?><?= htmlspecialchars($qs) ?>"><?= $i ?></a></li>
 										<?php endfor ?>
 									<?php elseif ($page + 2 > $total_pages): ?>
 										<?php for ($i = max(1, $total_pages - 4); $i <= $total_pages; $i++): ?>
-											<li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
+											<li class="page-item"><a class="page-link" href="?page=<?= $i ?><?= htmlspecialchars($qs) ?>"><?= $i ?></a></li>
 										<?php endfor ?>
 									<?php else: ?>
 
 										<?php for ($i = $page - 2; $i <= $page + 2; $i++): ?>
 											<?php if ($i >= 1 and $i <= $total_pages): ?>
-												<li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
+												<li class="page-item"><a class="page-link" href="?page=<?= $i ?><?= htmlspecialchars($qs) ?>"><?= $i ?></a></li>
 											<?php endif ?>
 										<?php endfor ?>
 
@@ -138,14 +141,14 @@ else {
 									<!-- 跳到後一頁 -->
 									<li class="page-item">
 										<?php if ($page < $total_pages): ?>
-											<a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Next">
+											<a class="page-link" href="?page=<?= $page + 1 ?><?= htmlspecialchars($qs) ?>" aria-label="Next">
 												<i class="bi bi-chevron-right"></i>
 											</a>
 										<?php endif ?>
 									</li>
 									<!-- 跳到最後一頁 -->
 									<li>
-										<a class="page-link" href="?page=<?= $total_pages ?>" aria-label="Next">
+										<a class="page-link" href="?page=<?= $total_pages ?><?= htmlspecialchars($qs) ?>" aria-label="Next">
 											<i class="bi bi-chevron-double-right"></i>
 										</a>
 									</li>
@@ -158,7 +161,7 @@ else {
 
 							<!-- 搜尋列 -->
 							<form action="list.php" method="GET" id="searchForm" name="searchForm">
-								<input type="text" name="keyword" id="keyword">
+								<input type="text" name="keyword" id="keyword" value="<?= htmlspecialchars($keyword) ?>">
 								<input type="submit" value="搜尋">
 							</form>
 							<!-- 搜尋列 -->
