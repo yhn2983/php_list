@@ -71,3 +71,41 @@
 --若點擊登出按鈕，則刪除 PHP 的 Session 中的用戶登入資訊，以完成登出功能。  
 
   ![image](https://github.com/yhn2983/php_list/blob/main/loginout.gif)
+
+
+## 安全性改進
+
+以下是在 `fix/security-bugs` 分支修正的安全問題與 bug：
+
+1. **權限控管（role）**
+   - 問題：原本只檢查有沒有登入，任何人註冊後都能新增、修改、刪除資料。
+   - 修正：`members` 資料表新增 `role` 欄位（`admin` / `member`，預設 `member`）；登入時把 `role` 存進 Session；`parts/admin_required.php` 改成只有 `role = 'admin'` 才能通過；列表頁也依 `role` 決定顯示管理版或一般版。
+   - 既有資料庫請執行 `add_member_role.sql`。
+
+2. **改密碼後無法登入**
+   - 問題：`member_edit_api.php` 把密碼以明碼存進資料庫，登入時 `password_verify()` 比對不過。
+   - 修正：改用 `password_hash()` 雜湊後再存；密碼欄位留空就不更新密碼；編輯表單與會員列表不再顯示密碼雜湊。
+
+3. **XSS**
+   - 問題：資料庫資料與使用者輸入直接輸出到 HTML。
+   - 修正：列表、編輯表單的 `value`、搜尋關鍵字回填、navbar 暱稱等輸出一律用 `htmlspecialchars()` 處理；登入錯誤訊息改用 `textContent`。
+
+4. **列表頁無限轉址**
+   - 問題：資料筆數為 0 時總頁數是 0，會在 `?page=0` 和 `?page=1` 之間無限轉址。
+   - 修正：總頁數至少為 1（`max(1, ceil(...))`），頁碼按鈕也不再超出實際頁數。
+
+5. **刪除、完成訂單改用 POST + CSRF token**
+   - 問題：`del.php`、`member_del.php`、`eval_del.php`、`complete_api.php` 用 GET 就能改資料，容易被惡意連結觸發。
+   - 修正：新增 `parts/csrf.php` 產生 Session token；上述 API 只接受 POST 並用 `hash_equals()` 檢查 token；前端先跳確認視窗，再用 POST 表單送出；SQL 改用 `prepare()`。
+
+6. **註冊檢查**
+   - 修正：`register_api.php` 註冊前用 `filter_var()` 驗證 email 格式，並檢查 email 是否已經註冊；PDO 錯誤只寫進伺服器 log，不直接回傳給前端。
+
+7. **API 不回傳密碼**
+   - 修正：`login_api.php`、`register_api.php` 的回傳 JSON 移除 `postData`（內含密碼）；登入成功時用 `session_regenerate_id()` 更換 Session ID。
+
+8. **搜尋結果分頁**
+   - 修正：訂單搜尋結果以符合條件的筆數計算頁數，分頁連結會帶著 `keyword` 參數。
+
+9. **移除測試檔**
+   - 刪除 `test.php`、`parts/password_hash.php`。
