@@ -27,7 +27,8 @@ if(empty($_POST["email"])or empty($_POST["password"])){
 		$_SESSION['admin']=[
 			'id'=>$row['id'],
 			'email'=>$email,
-			'nickname'=>$row['nickname']
+			'nickname'=>$row['nickname'],
+			'role'=>$row['role'] ?? 'member' #權限：admin / member
 		];
 	}
 }

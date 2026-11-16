@@ -55,7 +55,8 @@ CREATE TABLE `members` (
   `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nickname` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(200) COLLATE utf8mb4_general_ci NOT NULL
+  `password` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` varchar(20) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'member'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -364,6 +365,12 @@ INSERT INTO `members` (`id`, `name`, `email`, `nickname`, `password`) VALUES
 (301, '毛佳樺', 'zhaomin@yahoo.com', 'Jing Xue', 'x31PpU'),
 (302, '孫瑋婷', 'fengchao@hotmail.com', 'Xiuying Wang', 'r3wUdT'),
 (303, 'wang', 'test@test.com', 'littlew', '$2y$10$eihlYDeH/IoP.3lZh8KGCe9lszjSVPgiRkq2zUyJtEDrDTdFZJlty');
+
+--
+-- 設定管理員帳號（role = admin）。管理員 kim@nuuc.edu 的密碼為 123456（已用 password_hash 雜湊）
+--
+
+UPDATE `members` SET `role` = 'admin', `password` = '$2y$10$9ZUF9e4.Ke1erop3uUVmxuA3h8zHBuvjcnmX3DNfc8aApFcmQrGsG' WHERE `id` = 2;
 
 -- --------------------------------------------------------
 
