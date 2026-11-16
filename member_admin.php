@@ -11,7 +11,7 @@ if ($page < 1) {
 $perpage = 10;  #每頁有幾筆
 $total_sql = " SELECT count(1) FROM members ";
 $total_rows = $pdo->query($total_sql)->fetch(PDO::FETCH_NUM)[0]; #計算總筆數
-$total_pages = ceil($total_rows / $perpage); #總頁數
+$total_pages = max(1, ceil($total_rows / $perpage)); #總頁數
 
 if ($page > $total_pages) {
   header("Location:?page=" . $total_pages);
@@ -56,11 +56,11 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <!-- 頁數選擇鍵 -->
               </li>
               <?php if ($page - 2 < 1): ?>
-                <?php for ($i = 1; $i <= 5; $i++): ?>
+                <?php for ($i = 1; $i <= min(5, $total_pages); $i++): ?>
                   <li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor ?>
               <?php elseif ($page + 2 > $total_pages): ?>
-                <?php for ($i = $total_pages - 4; $i <= $total_pages; $i++): ?>
+                <?php for ($i = max(1, $total_pages - 4); $i <= $total_pages; $i++): ?>
                   <li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor ?>
               <?php else: ?>

@@ -11,7 +11,7 @@ if($page<1){
 $perPage=10; #每一頁筆數
 $total_sql="SELECT COUNT(1) FROM comment_fake ";
 $total_rows=$pdo->query($total_sql)->fetch(PDO::FETCH_NUM)[0];#總筆數
-$total_pages=ceil($total_rows/$perPage);#總頁數
+$total_pages = max(1, ceil($total_rows/$perPage));#總頁數
 # echo json_encode([$total_rows,$total_pages]);
 
 if($page>$total_pages){

@@ -11,7 +11,7 @@ if ($page < 1) {
 $perPage = 10; #每一頁筆數
 $total_sql = "SELECT COUNT(1) FROM order_fake ";
 $total_rows = $pdo->query($total_sql)->fetch(PDO::FETCH_NUM)[0]; #總筆數
-$total_pages = ceil($total_rows / $perPage); #總頁數
+$total_pages = max(1, ceil($total_rows / $perPage)); #總頁數
 # echo json_encode([$total_rows,$total_pages]);
 
 if ($page > $total_pages) {
@@ -78,11 +78,11 @@ $rows = $pdo->query($sql)->fetchAll();
 										<!-- 頁數選擇鍵 -->
 									</li>
 									<?php if ($page - 2 < 1): ?>
-										<?php for ($i = 1; $i <= 5; $i++): ?>
+										<?php for ($i = 1; $i <= min(5, $total_pages); $i++): ?>
 											<li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
 										<?php endfor ?>
 									<?php elseif ($page + 2 > $total_pages): ?>
-										<?php for ($i = $total_pages - 4; $i <= $total_pages; $i++): ?>
+										<?php for ($i = max(1, $total_pages - 4); $i <= $total_pages; $i++): ?>
 											<li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
 										<?php endfor ?>
 									<?php else: ?>
