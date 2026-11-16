@@ -108,15 +108,15 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <?php foreach ($rows as $r): ?>
                 <tr>
 
-                  <td><?= $r["id"] ?></td>
-                  <td><?= $r["name"] ?></td>
-                  <td><?= $r["email"] ?></td>
-                  <td><?= $r["nickname"] ?></td>
+                  <td><?= htmlspecialchars((string)$r["id"]) ?></td>
+                  <td><?= htmlspecialchars((string)$r["name"]) ?></td>
+                  <td><?= htmlspecialchars((string)$r["email"]) ?></td>
+                  <td><?= htmlspecialchars((string)$r["nickname"]) ?></td>
                   <td>********</td>
 
 
-                  <td><a href="member_edit.php?sid=<?= $r["id"] ?>"><i class="bi bi-pencil-square"></i></a></td>
-                  <td><a href="javascript: deleteIt(<?= $r["id"] ?>)"><i class="bi bi-x-square"></i></a></td>
+                  <td><a href="member_edit.php?sid=<?= htmlspecialchars((string)$r["id"]) ?>"><i class="bi bi-pencil-square"></i></a></td>
+                  <td><a href="javascript: deleteIt(<?= htmlspecialchars((string)$r["id"]) ?>)"><i class="bi bi-x-square"></i></a></td>
                 </tr>
               <?php endforeach ?>
             </tbody>

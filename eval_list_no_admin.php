@@ -97,13 +97,13 @@ $rows=$pdo->query($sql)->fetchAll();
 	<?php foreach($rows as $r):?>
 	<tr>
 	
-	<td><?=$r["id"]?></td>
-	<td><?=$r["order_id"]?></td>
-		<td><?=$r["sellername"]?></td>
-      <td><?=$r["buyername"]?></td>
-      <td><?=$r["rate"]?></td>
-			<td><?=htmlentities($r["comment"])?></td>
-			<td><?=$r["creat_at"]?></td>
+	<td><?= htmlspecialchars((string)$r["id"]) ?></td>
+	<td><?= htmlspecialchars((string)$r["order_id"]) ?></td>
+		<td><?= htmlspecialchars((string)$r["sellername"]) ?></td>
+      <td><?= htmlspecialchars((string)$r["buyername"]) ?></td>
+      <td><?= htmlspecialchars((string)$r["rate"]) ?></td>
+			<td><?= htmlspecialchars((string)$r["comment"]) ?></td>
+			<td><?= htmlspecialchars((string)$r["creat_at"]) ?></td>
 			
     </tr>
 		<?php endforeach ?>

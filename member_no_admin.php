@@ -114,9 +114,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
               <?php foreach ($rows as $r): ?>
                 <tr>
-                  <td><?= $r["id"] ?></td>
-                  <td><?= $r["email"] ?></td>
-                  <td><?= $r["nickname"] ?></td>
+                  <td><?= htmlspecialchars((string)$r["id"]) ?></td>
+                  <td><?= htmlspecialchars((string)$r["email"]) ?></td>
+                  <td><?= htmlspecialchars((string)$r["nickname"]) ?></td>
                 </tr>
               <?php endforeach ?>
             </tbody>

@@ -49,7 +49,7 @@ if (!isset($pageName)) {
         <ul class="navbar-nav mb-2 mb-lg-0">
           <?php if (isset($_SESSION['admin'])) : ?>
           <li class="nav-item">
-            <a class="nav-link "><?= $_SESSION['admin']['nickname'] ?></a>
+            <a class="nav-link "><?= htmlspecialchars((string)$_SESSION['admin']['nickname']) ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="logout.php">登出</a>

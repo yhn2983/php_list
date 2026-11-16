@@ -43,22 +43,22 @@ if (empty($r)) {
 
                 <form name="form1" id="form1" method="post" onsubmit="sendData(event)">
 
-                  <input type="hidden" name="sid" value="<?= $r["id"] ?>">
+                  <input type="hidden" name="sid" value="<?= htmlspecialchars((string)$r["id"]) ?>">
 
                   <div class="mb-3">
                     <label for="name" class="form-label">姓名 </label>
-                    <input type="text" class="form-control" name="name" id="name" value="<?= $r["name"] ?>" />
+                    <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars((string)$r["name"]) ?>" />
                     <div class="form-text"></div>
                   </div>
                   <div class="mb-3">
                     <label for="email" class="form-label">信箱 </label>
-                    <input type="text" class="form-control" name="email" id="email" value="<?= $r["email"] ?>" />
+                    <input type="text" class="form-control" name="email" id="email" value="<?= htmlspecialchars((string)$r["email"]) ?>" />
                     <div class="form-text"></div>
                   </div>
                   <div class="mb-3">
                     <label for="nickname" class="form-label">暱稱 </label>
                     <input type="text" class="form-control" name="nickname" id="nickname"
-                      value="<?= $r["nickname"] ?>" />
+                      value="<?= htmlspecialchars((string)$r["nickname"]) ?>" />
                     <div class="form-text"></div>
                   </div>
                   <div class="mb-3">

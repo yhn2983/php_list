@@ -43,21 +43,21 @@ if(empty($r)){
 
 	<form name="form1" id="form1" method="post" onsubmit="sendData(event)">
    
-<input type="hidden" name="sid" value="<?=$r["id"]?>">
+<input type="hidden" name="sid" value="<?= htmlspecialchars((string)$r["id"]) ?>">
 
 <div class="mb-3">
     <label for="seller" class="form-label">訂單編號 </label>
-    <input type="text" class="form-control" name="order_id" id="order_id" value="<?=$r["id"]?>" readonly/>
+    <input type="text" class="form-control" name="order_id" id="order_id" value="<?= htmlspecialchars((string)$r["id"]) ?>" readonly/>
     <div class="form-text"></div>
 	</div>
 	<div class="mb-3">
     <label for="seller" class="form-label">賣家 </label>
-    <input type="text" class="form-control" name="seller" id="seller" value="<?=$r["sellername"]?>"readonly/>
+    <input type="text" class="form-control" name="seller" id="seller" value="<?= htmlspecialchars((string)$r["sellername"]) ?>"readonly/>
     <div class="form-text"></div>
 	</div>
 	<div class="mb-3">
     <label for="buyer" class="form-label">買家 </label>
-    <input type="text" class="form-control" name="buyer" id="buyer" value="<?=$r["buyername"]?>"readonly/>
+    <input type="text" class="form-control" name="buyer" id="buyer" value="<?= htmlspecialchars((string)$r["buyername"]) ?>"readonly/>
     <div class="form-text"></div>
 	</div>
 	<div class="mb-3">

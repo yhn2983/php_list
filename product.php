@@ -32,11 +32,11 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <tbody>
             <?php foreach ($rows as $r): ?>
               <tr>
-                <td><?= $r["id"] ?></td>
-                <td><?= $r["product_name"] ?></td>
-                <td><?= $r["price"] ?></td>
-                <td><?= $r["descr"] ?></td>
-                <td><img src="<?= $r["img"] ?>" alt="" style="width: 100px; height: 100px;"></td>
+                <td><?= htmlspecialchars((string)$r["id"]) ?></td>
+                <td><?= htmlspecialchars((string)$r["product_name"]) ?></td>
+                <td><?= htmlspecialchars((string)$r["price"]) ?></td>
+                <td><?= htmlspecialchars((string)$r["descr"]) ?></td>
+                <td><img src="<?= htmlspecialchars((string)$r["img"]) ?>" alt="" style="width: 100px; height: 100px;"></td>
               </tr>
             <?php endforeach ?>
           </tbody>

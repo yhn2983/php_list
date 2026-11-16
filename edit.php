@@ -43,41 +43,41 @@ if(empty($r)){
 
 	<form name="form1" id="form1" method="post" onsubmit="sendData(event)">
    
-<input type="hidden" name="sid" value="<?=$r["id"]?>">
+<input type="hidden" name="sid" value="<?= htmlspecialchars((string)$r["id"]) ?>">
 
 	<div class="mb-3">
     <label for="seller" class="form-label">賣家 </label>
-    <input type="text" class="form-control" name="seller" id="seller" value="<?=$r["sellername"]?>"/>
+    <input type="text" class="form-control" name="seller" id="seller" value="<?= htmlspecialchars((string)$r["sellername"]) ?>"/>
     <div class="form-text"></div>
 	</div>
 	<div class="mb-3">
     <label for="buyer" class="form-label">買家 </label>
-    <input type="text" class="form-control" name="buyer" id="buyer" value="<?=$r["buyername"]?>"/>
+    <input type="text" class="form-control" name="buyer" id="buyer" value="<?= htmlspecialchars((string)$r["buyername"]) ?>"/>
     <div class="form-text"></div>
 	</div>
 	<div class="mb-3">
     <label for="price" class="form-label">總價 </label>
-    <input type="text" class="form-control" name="price" id="price" value="<?=$r["total_price"]?>"/>
+    <input type="text" class="form-control" name="price" id="price" value="<?= htmlspecialchars((string)$r["total_price"]) ?>"/>
     <div class="form-text"></div>
 	</div>
 	<div class="mb-3">
     <label for="amount" class="form-label">總數 </label>
-    <input type="text" class="form-control" name="amount" id="amount" value="<?=$r["total_amount"]?>" />
+    <input type="text" class="form-control" name="amount" id="amount" value="<?= htmlspecialchars((string)$r["total_amount"]) ?>" />
     <div class="form-text"></div>
 	</div>
 	<div class="mb-3">
     <label for="shipment_fee" class="form-label">運費</label>
-    <input type="text" class="form-control" name="shipment_fee" id="shipment_fee" value="<?=$r["shipment_fee"]?>"/>
+    <input type="text" class="form-control" name="shipment_fee" id="shipment_fee" value="<?= htmlspecialchars((string)$r["shipment_fee"]) ?>"/>
     <div class="form-text"></div>
 	</div>
 	<div class="mb-3">
     <label for="shipment_status" class="form-label">寄送方式 </label>
-    <input class="form-control" name="shipment_status" id="shipment_status" value="<?=$r["shipment_status"]?>">
+    <input class="form-control" name="shipment_status" id="shipment_status" value="<?= htmlspecialchars((string)$r["shipment_status"]) ?>">
     <div class="form-text"></div>
 	</div>
     <div class="mb-3">
 	<label for="payment_status" class="form-label">付款方式 </label>
-	<input type="payment_status" class="form-control" name="payment_status" id="payment_status" value="<?=$r["payment_status"]?>"/>
+	<input type="payment_status" class="form-control" name="payment_status" id="payment_status" value="<?= htmlspecialchars((string)$r["payment_status"]) ?>"/>
     <div class="form-text"></div>
 	</div>
     <div class="mb-3">

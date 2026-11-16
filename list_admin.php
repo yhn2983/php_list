@@ -195,22 +195,22 @@ else {
 								<tbody>
 									<?php foreach ($rows as $r): ?>
 										<tr>
-											<td><a href="eval_add.php?sid=<?= $r["id"] ?>"><button type="button" class="btn btn-primary">
+											<td><a href="eval_add.php?sid=<?= htmlspecialchars((string)$r["id"]) ?>"><button type="button" class="btn btn-primary">
 														評論</button></a></td>
-											<td><a href="javascript: completeIt(<?= $r["id"] ?>)"><button type="button" class="btn btn-success">
+											<td><a href="javascript: completeIt(<?= htmlspecialchars((string)$r["id"]) ?>)"><button type="button" class="btn btn-success">
 														完成</button></a></td>
-											<td><?= $r["id"] ?></td>
-											<td><?= $r["sellername"] ?></td>
-											<td><?= $r["buyername"] ?></td>
-											<td><?= $r["total_price"] ?></td>
-											<td><?= $r["total_amount"] ?></td>
-											<td><?= $r["shipment_fee"] ?></td>
-											<td><?= $r["payment_status"] ?></td>
-											<td><?= $r["shipment_status"] ?></td>
-											<td><?= htmlentities($r["order_date"]) ?></td>
-											<td><?= $r["status"] ?></td>
-											<td><a href="edit.php?sid=<?= $r["id"] ?>"><i class="bi bi-pencil-square"></i></a></td>
-											<td><a href="javascript: deleteIt(<?= $r["id"] ?>)"><i class="bi bi-x-square"></i></a></td>
+											<td><?= htmlspecialchars((string)$r["id"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["sellername"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["buyername"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["total_price"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["total_amount"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["shipment_fee"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["payment_status"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["shipment_status"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["order_date"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["status"]) ?></td>
+											<td><a href="edit.php?sid=<?= htmlspecialchars((string)$r["id"]) ?>"><i class="bi bi-pencil-square"></i></a></td>
+											<td><a href="javascript: deleteIt(<?= htmlspecialchars((string)$r["id"]) ?>)"><i class="bi bi-x-square"></i></a></td>
 										</tr>
 									<?php endforeach ?>
 								</tbody>

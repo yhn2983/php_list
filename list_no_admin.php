@@ -140,12 +140,12 @@ $rows = $pdo->query($sql)->fetchAll();
 									<?php foreach ($rows as $r): ?>
 										<tr>
 
-											<td><?= $r["id"] ?></td>
-											<td><?= $r["sellername"] ?></td>
-											<td><?= $r["buyername"] ?></td>
+											<td><?= htmlspecialchars((string)$r["id"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["sellername"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["buyername"]) ?></td>
 
-											<td><?= htmlentities($r["order_date"]) ?></td>
-											<td><?= $r["status"] ?></td>
+											<td><?= htmlspecialchars((string)$r["order_date"]) ?></td>
+											<td><?= htmlspecialchars((string)$r["status"]) ?></td>
 
 										</tr>
 									<?php endforeach ?>

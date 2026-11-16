@@ -137,7 +137,7 @@ if(isPass==true){
      if(result.success){
      location.href= 'index_.php';
      }else{
-      document.querySelector("#failureInfo").innerHTML=result.error;
+      document.querySelector("#failureInfo").textContent=result.error || "帳號或密碼錯誤";
       failureModal.show();
      }
     })}

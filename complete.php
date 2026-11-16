@@ -33,7 +33,7 @@ document.getElementById('completeBtn').addEventListener('click', function() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: 'id=<?=$r["id"]?>', // 传递订单ID，假设为1
+        body: 'id=<?= htmlspecialchars((string)$r["id"]) ?>', // 传递订单ID，假设为1
     })
     .then(response => response.json())
     .then(data => {
