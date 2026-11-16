@@ -112,7 +112,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <td><?= $r["name"] ?></td>
                   <td><?= $r["email"] ?></td>
                   <td><?= $r["nickname"] ?></td>
-                  <td><?= $r["password"] ?></td>
+                  <td>********</td>
 
 
                   <td><a href="member_edit.php?sid=<?= $r["id"] ?>"><i class="bi bi-pencil-square"></i></a></td>

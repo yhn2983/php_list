@@ -63,8 +63,8 @@ if (empty($r)) {
                   </div>
                   <div class="mb-3">
                     <label for="password" class="form-label">密碼 </label>
-                    <input type="text" class="form-control" name="password" id="password" value="<?= $r["password"] ?>"
-                      readonly />
+                    <input type="password" class="form-control" name="password" id="password" value=""
+                      placeholder="留空則不修改密碼" autocomplete="new-password" />
                     <div class="form-text"></div>
                   </div>
 
