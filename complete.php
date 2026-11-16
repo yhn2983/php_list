@@ -1,5 +1,7 @@
 <?php
+require __DIR__ ."/parts/admin_required.php";
 require __DIR__."/parts/db_link.php";
+require __DIR__."/parts/csrf.php";
 $title="新增評論";
 $pageName="eval_add";
 
@@ -27,18 +29,20 @@ if(empty($r)){
 
 
 document.getElementById('completeBtn').addEventListener('click', function() {
-    // 发送 Fetch 请求
+    if (!confirm('是否已完成第<?= intval($r["id"]) ?>筆訂單')) {
+        return;
+    }
+    // 用 POST 送出訂單 ID 與 CSRF token
+    const fd = new FormData();
+    fd.append('sid', '<?= intval($r["id"]) ?>');
+    fd.append('csrf_token', '<?= htmlspecialchars($_SESSION["csrf_token"]) ?>');
     fetch('complete_api.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: 'id=<?= htmlspecialchars((string)$r["id"]) ?>', // 传递订单ID，假设为1
+        body: fd,
     })
-    .then(response => response.json())
-    .then(data => {
-        // 处理服务器响应
-        console.log(data);
+    .then(response => {
+        // complete_api.php 完成後會轉址回列表
+        location.href = 'list.php';
     })
     .catch(error => {
         console.error('Error:', error);

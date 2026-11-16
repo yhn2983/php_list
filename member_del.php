@@ -1,13 +1,17 @@
 <?php
 require __DIR__ . "/parts/admin_required.php";
 require __DIR__ . "/parts/db_link.php";
+require __DIR__ . "/parts/csrf.php";
 
-$sid = isset($_GET["sid"]) ? intval($_GET["sid"]) : 0;
+csrf_check(); #只接受 POST，並檢查 CSRF token
+
+$sid = isset($_POST["sid"]) ? intval($_POST["sid"]) : 0;
 
 
 if (!empty($sid)) {
-  $sql = "DELETE  FROM `members` WHERE id=$sid";
-  $pdo->query($sql);
+  $sql = "DELETE FROM `members` WHERE id=?";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$sid]);
 }
 $backTo = "member.php";
 if (!empty($_SERVER['HTTP_REFERER'])) {

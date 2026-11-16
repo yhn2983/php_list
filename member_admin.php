@@ -1,4 +1,5 @@
 <?php require __DIR__ . "/parts/db_link.php";
+require __DIR__ . "/parts/csrf.php";
 $title = '會員列表';
 $pageName = 'member';
 
@@ -128,9 +129,29 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 <?php include __DIR__ . "/parts/script.php" ?>
 <script>
-  function deleteIt(sid) {
-    if (confirm(`是否要刪除第${sid}筆訂單`)) {
-      location.href = `member_del.php?sid=${sid}`;
+  // 用 POST 表單送出（附上 CSRF token），取代原本的 GET 連結
+	function postAction(url, sid) {
+		const form = document.createElement("form");
+		form.method = "post";
+		form.action = url;
+		const data = {
+			sid: sid,
+			csrf_token: "<?= htmlspecialchars($_SESSION["csrf_token"]) ?>"
+		};
+		for (let key in data) {
+			const input = document.createElement("input");
+			input.type = "hidden";
+			input.name = key;
+			input.value = data[key];
+			form.appendChild(input);
+		}
+		document.body.appendChild(form);
+		form.submit();
+	}
+
+	function deleteIt(sid) {
+    if (confirm(`是否要刪除第${sid}筆會員資料`)) {
+      postAction("member_del.php", sid);
     }
   }
 </script>

@@ -1,4 +1,5 @@
 <?php require __DIR__."/parts/db_link.php";
+require __DIR__ . "/parts/csrf.php";
 $title = '評論列表';
 $pageName = 'eval_list';
 
@@ -121,9 +122,29 @@ $rows=$pdo->query($sql)->fetchAll();
 <?php include __DIR__."/parts/script.php"?>
 <script>
 
-function deleteIt(sid){
+// 用 POST 表單送出（附上 CSRF token），取代原本的 GET 連結
+	function postAction(url, sid) {
+		const form = document.createElement("form");
+		form.method = "post";
+		form.action = url;
+		const data = {
+			sid: sid,
+			csrf_token: "<?= htmlspecialchars($_SESSION["csrf_token"]) ?>"
+		};
+		for (let key in data) {
+			const input = document.createElement("input");
+			input.type = "hidden";
+			input.name = key;
+			input.value = data[key];
+			form.appendChild(input);
+		}
+		document.body.appendChild(form);
+		form.submit();
+	}
+
+	function deleteIt(sid){
 	if(confirm(`是否要刪除第${sid}筆評論`)){
-		location.href=`eval_del.php?sid=${sid}`;
+		postAction("eval_del.php", sid);
 	}
 	
 }
